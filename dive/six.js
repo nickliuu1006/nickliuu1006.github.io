@@ -15,10 +15,22 @@ const firebaseConfig = {
     const db = firebase.database();
     
     const diveLinker = new DiveLinker("six");
+    var uid = "";
+    firebase.auth().onAuthStateChanged(function(user) {
+      if(user) {
+      // 使用者已登入，可以取得資料
+      var email = user.email;
+      uid = user.uid;
+      console.log(email, uid);
+      } else {
+          console.log("no");
+    }
+    });
+    
     setTimeout(function func(){
         if(diveLinker.checkComplete() == true){
             var x6 = diveLinker.getAttr("a1f50abef0504150acd711eec5e379d8")
-            db.ref('TheStudents/nyNgsMSjqEaTjeG5Bv3xzOClGSv2').update({six:x6})
+            db.ref('TheStudents/' + uid ).update({six:x6})
             .catch((error)=>{console.log(error)})
         }
         else{
