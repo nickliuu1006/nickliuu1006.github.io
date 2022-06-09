@@ -29,7 +29,7 @@ const firebaseConfig = {
     
     setTimeout(function func(){
         if(diveLinker.checkComplete() == true){
-            var x8 = diveLinker.getAttr("d3ec647402c74961b2607304c9fcf865")
+            var x8 = diveLinker.getAttr("704ca63c7de743debb350788551acdd7")
             db.ref('TheStudents/' + uid ).update({eight:x8})
             .catch((error)=>{console.log(error)})
         }
